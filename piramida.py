@@ -6,6 +6,10 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+
+a = 1
+h = (a * math.sqrt(3) / 3)
+
 surfaces = (
     (0, 1, 2),
     (0, 1, 3),
@@ -50,7 +54,7 @@ def draw_next(vers, level):
 
 
 def loadTexture():
-    path = '/Users/sergiusz/PycharmProjects/grafika-komputerowa/tekstury/D1_t.tga'
+    path = 'tekstury/D1_t.tga'
     texture = glGenTextures(1)
     glEnable(GL_TEXTURE_2D)
     # glEnable(GL_CULL_FACE)
@@ -68,8 +72,7 @@ def loadTexture():
     return texture
 
 
-a = 1
-h = (a * math.sqrt(3) / 3)
+
 
 
 def trojkat_tekstura(vers):
@@ -84,9 +87,9 @@ def trojkat_tekstura(vers):
 
     glBegin(GL_TRIANGLES)
 
-    for trio in surfaces:
+    for surface in surfaces:
 
-        for i, ver in enumerate(trio):
+        for i, ver in enumerate(surface):
             glTexCoord2fv(texture_coordinates[i])
 
             glVertex3fv((v0, v1, v2, v3)[ver])
@@ -106,16 +109,16 @@ def trojkat_kolor(vers):
     v3 = (new_x + h, newH, new_z - h)
 
     glBegin(GL_LINES)
-    for trio in surfaces:
-        for i, ver in enumerate(trio):
+    for surface in surfaces:
+        for i, ver in enumerate(surface):
             glColor3fv((255, 0, 0))
 
             glVertex3fv((v0, v1, v2, v3)[ver])
     glEnd()
 
     glBegin(GL_TRIANGLES)
-    for trio in surfaces:
-        for i, ver in enumerate(trio):
+    for surface in surfaces:
+        for i, ver in enumerate(surface):
             glColor3fv((1.0, 1.0, 1.0))
             glVertex3fv((v0, v1, v2, v3)[ver])
     glEnd()
